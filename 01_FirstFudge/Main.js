@@ -3,6 +3,7 @@ var FirstFudge;
 (function (FirstFudge) {
     var f = FudgeCore;
     window.addEventListener("load", hndLoad);
+    let viewport;
     function hndLoad(_event) {
         const canvas = document.querySelector("canvas");
         f.RenderManager.initialize();
@@ -17,10 +18,10 @@ var FirstFudge;
         let cmpCamera = new f.ComponentCamera();
         cmpCamera.pivot.translateZ(2);
         cmpCamera.pivot.rotateY(180);
-        FirstFudge.viewport = new f.Viewport();
-        FirstFudge.viewport.initialize("Viewport", node, cmpCamera, canvas);
-        f.Debug.log(FirstFudge.viewport);
-        FirstFudge.viewport.draw();
+        viewport = new f.Viewport();
+        viewport.initialize("Viewport", node, cmpCamera, canvas);
+        f.Debug.log(viewport);
+        viewport.draw();
     }
 })(FirstFudge || (FirstFudge = {}));
 //# sourceMappingURL=Main.js.map
