@@ -2,9 +2,8 @@ namespace SnakeMove {
     import f = FudgeCore;
 
     window.addEventListener("load", hndLoad);
-    let viewport: f.Viewport;
+    export let viewport: f.Viewport;
     let snake: Snake;
-   
 
     function hndLoad(_event: Event): void {
         const canvas: HTMLCanvasElement = document.querySelector("canvas");
@@ -14,7 +13,7 @@ namespace SnakeMove {
         f.RenderManager.initialize();
         f.Debug.log(canvas);
 
-        snake = new Snake;
+        snake = new Snake();
     
         let cmpCamera: f.ComponentCamera = new f.ComponentCamera();
         cmpCamera.pivot.translateZ(30);
@@ -24,14 +23,40 @@ namespace SnakeMove {
         viewport.initialize("Viewport", snake, cmpCamera, canvas);
         f.Debug.log(viewport);
 
-        viewport.draw();
+        document.addEventListener("keydown", hndKeypress);
 
         f.Loop.addEventListener(f.EVENT.LOOP_FRAME, update);
-        f.Loop.start(f.LOOP_MODE.TIME_REAL, 10);
+        f.Loop.start(f.LOOP_MODE.TIME_REAL, 2);
     }  
 
-   function update(_event: Event): void {
-        snake.move();
+    function update(_event: f.Eventƒ): void {
+
         viewport.draw();
+        snake.move();
+        
     }
+
+    // Klasse Rechteck für Kollisionen; im FUDGE
+    // Sphere für Kollisionen
+
+    function hndKeypress(_event: f.EventKeyboard): void {
+        switch (_event.code) {
+            
+            case f.KEYBOARD_CODE.W: 
+                snake.direction = f.Vector3.Y();
+                break;
+
+            case f.KEYBOARD_CODE.D:
+                snake.direction = f.Vector3.X();
+                break;
+
+            case f.KEYBOARD_CODE.A:
+                snake.direction = f.Vector3.X(-1);
+                break;
+
+            case f.KEYBOARD_CODE.S:
+                snake.direction = f.Vector3.Y(-1);
+        }
+    }
+
 }

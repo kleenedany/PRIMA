@@ -13,18 +13,18 @@ var SnakeMove;
             let child = this.getChildren()[0];
             let cmpPrev = child.getComponent(f.ComponentTransform); // Andere Möglichkeit: child.cmpTransform;
             let mtxHead = cmpPrev.local.copy;
-            // Maybe problem using reference
             mtxHead.translate(this.direction);
             let cmpNew = new f.ComponentTransform(mtxHead);
             for (let segment of this.getChildren()) {
-                cmpPrev = child.getComponent(f.ComponentTransform);
+                cmpPrev = segment.getComponent(f.ComponentTransform);
                 segment.removeComponent(cmpPrev);
                 segment.addComponent(cmpNew);
                 cmpNew = cmpPrev;
             }
         }
-        grow() {
-        }
+        /* public grow(): void {
+             
+         } */
         createSegment(_segments) {
             let mesh = new f.MeshQuad();
             let mtrSolidWhite = new f.Material("SolidWhite", f.ShaderUniColor, new f.CoatColored(f.Color.CSS("WHITE")));

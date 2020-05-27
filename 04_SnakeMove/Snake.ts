@@ -1,4 +1,4 @@
-namespace SnakeMove {
+ namespace SnakeMove {
     import f = FudgeCore;
 
     export class Snake extends f.Node {
@@ -14,13 +14,12 @@ namespace SnakeMove {
             let child: f.Node = this.getChildren()[0];
             let cmpPrev: f.ComponentTransform = child.getComponent(f.ComponentTransform); // Andere Möglichkeit: child.cmpTransform;
             let mtxHead: f.Matrix4x4 = cmpPrev.local.copy;
-            // Maybe problem using reference
             mtxHead.translate(this.direction);
             
             let  cmpNew: f.ComponentTransform = new f.ComponentTransform(mtxHead);
 
             for (let segment of this.getChildren()) {
-                cmpPrev = child.getComponent(f.ComponentTransform);
+                cmpPrev = segment.getComponent(f.ComponentTransform);
                 segment.removeComponent(cmpPrev);
                 segment.addComponent(cmpNew);
                 cmpNew = cmpPrev;
@@ -52,6 +51,4 @@ namespace SnakeMove {
             }
         }
     }
-
-
 }
