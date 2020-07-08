@@ -18,10 +18,10 @@ namespace SnakeStart {
         let mtrSolidWhite: f.Material = new f.Material("SolidWhite", f.ShaderUniColor, new f.CoatColored(f.Color.CSS("WHITE")));
         
         snake = new f.Node("Snake");
-        let cmpTransformSnake: f.ComponentTransform= new f.ComponentTransform();
+        let cmpTransformSnake: f.ComponentTransform = new f.ComponentTransform();
         snake.addComponent(cmpTransformSnake);
 
-        for(let i: number = 0; i < 4; i++){
+        for (let i: number = 0; i < 4; i++){
             let node: f.Node = new f.Node("Quad");
 
             let cmpMesh: f.ComponentMesh = new f.ComponentMesh(mesh);

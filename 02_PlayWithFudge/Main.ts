@@ -107,11 +107,11 @@ namespace PlayWithFudge {
         nodePyramid.mtxLocal.rotateY(-0.25);
         nodePyramid.mtxLocal.rotateX(-0.5);
 
-        if(nodeSphere.mtxLocal.translation.x > -5){
+        if (nodeSphere.mtxLocal.translation.x > -5) {
             nodeSphere.mtxLocal.translateX(-0.1);
         }
         
-        if(nodeQuad.mtxLocal.translation.x < 5){
+        if (nodeQuad.mtxLocal.translation.x < 5) {
             nodeQuad.mtxLocal.translateX(0.08);
         }
 
